@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml /app/
 
 RUN apk add --update --no-cache g++ make git \
-    && pnpm install --frozen-lockfile \
+    && pnpm install --no-frozen-lockfile \
     && apk del g++ make
 
 COPY . /app
