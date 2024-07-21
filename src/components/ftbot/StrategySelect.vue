@@ -29,8 +29,7 @@ const props = defineProps({
   modelValue: { type: String, required: true },
   showDetails: { default: false, required: false, type: Boolean },
 });
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
-
+const emit = defineEmits(['update:modelValue']);
 const botStore = useBotStore();
 
 const strategyCode = computed((): string => botStore.activeBot.strategy?.code);

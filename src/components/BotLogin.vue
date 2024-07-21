@@ -94,7 +94,7 @@ const props = defineProps({
   inModal: { default: false, type: Boolean },
   existingAuth: { default: null, required: false, type: Object as () => AuthStorageWithBotId },
 });
-const emit = defineEmits<{ loginResult: [value: boolean] }>();
+const emit = defineEmits(['loginResult']);
 
 const defaultURL = window.location.origin || 'http://localhost:3000';
 

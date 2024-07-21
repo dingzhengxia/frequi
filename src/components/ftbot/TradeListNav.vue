@@ -66,7 +66,7 @@ const props = defineProps({
   trades: { required: true, type: Array as () => Trade[] },
   backtestMode: { required: false, default: false, type: Boolean },
 });
-const emit = defineEmits<{ 'trade-select': [trade: Trade] }>();
+const emit = defineEmits(['trade-select']);
 
 const botStore = useBotStore();
 const selectedTrade = ref({} as Trade);

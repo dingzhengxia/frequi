@@ -12,8 +12,7 @@ const props = defineProps({
   value: { default: '', type: String },
   belowTimeframe: { required: false, default: '', type: String },
 });
-const emit = defineEmits<{ input: [value: string] }>();
-
+const emit = defineEmits(['input']);
 const selectedTimeframe = ref('');
 // The below list must always remain sorted correctly!
 const availableTimeframesBase = [

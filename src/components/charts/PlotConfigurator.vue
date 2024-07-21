@@ -34,7 +34,7 @@
         </BFormSelect>
       </BFormGroup>
     </div>
-    <div class="d-flex flex-row mt-1 gap-1">
+    <div class="d-flex flex-row mt-1">
       <BButton
         variant="secondary"
         title="Remove indicator to plot"
@@ -49,9 +49,12 @@
         variant="primary"
         title="Add indicator to plot"
         size="sm"
-        class="col"
+        class="ms-1 col"
         :disabled="addNewIndicator"
-        @click="clickAddNewIndicator"
+        @click="
+          addNewIndicator = !addNewIndicator;
+          selIndicatorName = '';
+        "
       >
         Add new indicator
       </BButton>
@@ -268,12 +271,6 @@ function removeIndicator() {
   plotStore.editablePlotConfig = { ...plotStore.editablePlotConfig };
   selIndicatorName.value = '';
 }
-
-function clickAddNewIndicator() {
-  addNewIndicator.value = !addNewIndicator.value;
-  selIndicatorName.value = '';
-}
-
 function addSubplot(newSubplotName: string) {
   plotStore.editablePlotConfig.subplots = {
     ...plotStore.editablePlotConfig.subplots,
@@ -284,8 +281,7 @@ function addSubplot(newSubplotName: string) {
 
 function deleteSubplot(subplotName: string) {
   delete plotStore.editablePlotConfig.subplots[subplotName];
-  // Reassign to trigger reactivity
-  plotStore.editablePlotConfig = { ...plotStore.editablePlotConfig };
+  // plotStore.editablePlotConfig.subplots = { ...plotStore.editablePlotConfig.subplots };
   selSubPlot.value = subplots.value[subplots.value.length - 1];
 }
 

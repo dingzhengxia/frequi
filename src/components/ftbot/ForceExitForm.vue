@@ -39,6 +39,7 @@
         >
           <BFormSelect
             v-model="ordertype"
+            class="ms-2"
             :options="['market', 'limit']"
             style="min-width: 7em"
             size="sm"
@@ -59,10 +60,9 @@ const props = defineProps({
     type: Object as () => Trade,
     required: true,
   },
+  modelValue: { required: true, default: false, type: Boolean },
 });
-
-const model = defineModel<boolean>();
-
+const emit = defineEmits(['update:modelValue']);
 const botStore = useBotStore();
 
 const form = ref<HTMLFormElement>();
@@ -74,6 +74,15 @@ const checkFormValidity = () => {
 
   return valid;
 };
+
+const model = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value: boolean) {
+    emit('update:modelValue', value);
+  },
+});
 
 function handleSubmit() {
   // Exit when the form isn't valid

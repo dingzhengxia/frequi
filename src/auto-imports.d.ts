@@ -361,15 +361,6 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
   import('vue')
-  // @ts-ignore
-  export type { ColorPreferences } from './stores/colors'
-  import('./stores/colors')
-  // @ts-ignore
-  export type { TradeLayout, DashboardLayout } from './stores/layout'
-  import('./stores/layout')
-  // @ts-ignore
-  export type { OpenTradeVizOptions } from './stores/settings'
-  import('./stores/settings')
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'

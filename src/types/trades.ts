@@ -129,6 +129,12 @@ export interface Trade extends TradeBase {
   total_profit_fiat?: number;
   /* Relative Total profit, bot open and realized */
   total_profit_ratio?: number;
+
+  /* Total Profit, both open and realized*/
+  summary_profit_abs?: number;
+  summary_profit_fiat?: number;
+  /* Relative Total profit, bot open and realized */
+  summary_profit_ratio?: number;
 }
 
 export interface ClosedTrade extends TradeBase {

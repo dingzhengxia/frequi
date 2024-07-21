@@ -51,16 +51,6 @@ export default [
         'PascalCase',
         { registeredComponentsOnly: false, ignores: ['/i-mdi-.*/'] },
       ],
-      'vue/block-lang': [
-        'error',
-        {
-          script: {
-            lang: 'ts',
-          },
-        },
-      ],
-      'vue/define-emits-declaration': ['error'],
-      'vue/enforce-style-attribute': ['error'],
     },
   },
 ];

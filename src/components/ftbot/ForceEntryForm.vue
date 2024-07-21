@@ -123,10 +123,11 @@ import { useBotStore } from '@/stores/ftbotwrapper';
 import { ForceEnterPayload, OrderSides } from '@/types';
 
 const props = defineProps({
+  modelValue: { required: true, default: false, type: Boolean },
   pair: { type: String, default: '' },
   positionIncrease: { type: Boolean, default: false },
 });
-const model = defineModel<boolean>();
+const emit = defineEmits(['update:modelValue']);
 const botStore = useBotStore();
 
 const form = ref<HTMLFormElement>();
@@ -147,6 +148,15 @@ const orderSideOptions = [
   { value: 'long', text: 'Long' },
   { value: 'short', text: 'Short' },
 ];
+
+const model = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value: boolean) {
+    emit('update:modelValue', value);
+  },
+});
 
 const checkFormValidity = () => {
   const valid = form.value?.checkValidity();
@@ -183,7 +193,7 @@ const handleSubmit = async () => {
   }
   botStore.activeBot.forceentry(payload);
   await nextTick();
-  model.value = false;
+  emit('update:modelValue', false);
 };
 const resetForm = () => {
   console.log('resetForm');

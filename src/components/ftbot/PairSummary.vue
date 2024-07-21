@@ -25,12 +25,7 @@
           <span v-if="comb.locks" :title="comb.lockReason"> <i-mdi-lock /> </span>
         </div>
 
-        <TradeProfit v-if="comb.trade && !backtestMode" :trade="comb.trade" />
-        <ProfitPill
-          v-if="backtestMode && comb.tradeCount > 0"
-          :profit-ratio="comb.profit"
-          :stake-currency="botStore.activeBot.stakeCurrency"
-        />
+        <TradeProfit v-if="comb.trade && !backtestMode" :trade="comb.trade" mode="summary"/>
       </BListGroupItem>
     </BListGroup>
   </div>
@@ -64,7 +59,7 @@ const props = defineProps({
 const botStore = useBotStore();
 const combinedPairList = computed(() => {
   const comb: CombinedPairList[] = [];
-
+  // const tradeSummary;
   props.pairlist.forEach((pair) => {
     const trades: Trade[] = props.trades.filter((el) => el.pair === pair);
     const allLocks = props.currentLocks.filter((el) => el.pair === pair);
@@ -91,6 +86,10 @@ const combinedPairList = computed(() => {
     }
     if (trade) {
       profitString += `\nOpen since: ${timestampms(trade.open_timestamp)}`;
+      trade.summary_profit_ratio = profit/trades.length
+      trade.summary_profit_abs = profitAbs
+      console.log(trade.pair + " summary " + trade.summary_profit_ratio + " " + trade.summary_profit_abs)
+      console.log(trade.pair + " total " + trade.total_profit_ratio + " " + trade.total_profit_abs)
     }
     if (
       filterText.value === '' ||
