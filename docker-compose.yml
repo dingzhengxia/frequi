@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: "./Dockerfile"
+      network: host
     image: frequi
     # image: freqtradeorg/frequi:main
     restart: unless-stopped
