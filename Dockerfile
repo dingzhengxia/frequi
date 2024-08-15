@@ -1,4 +1,4 @@
-FROM node:22.4.1-alpine as ui-builder
+FROM node:22.6.0-alpine as ui-builder
 
 RUN mkdir /app \
     && corepack enable
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml /app/
 
 RUN apk add --update --no-cache g++ make git \
-    && pnpm install --no-frozen-lockfile \
+    && pnpm install --frozen-lockfile \
     && apk del g++ make
 
 COPY . /app

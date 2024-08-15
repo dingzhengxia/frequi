@@ -1,12 +1,3 @@
-<template>
-  <ProfitPill
-    :profit-ratio="profitRatio"
-    :profit-abs="profitAbs"
-    :profit-desc="profitDesc"
-    :stake-currency="trade.quote_currency || 'USDT'"
-  />
-</template>
-
 <script setup lang="ts">
 import { Trade } from '@/types';
 import {PropType} from "vue-demi";
@@ -66,4 +57,11 @@ const profitDesc = computed((): string => {
 });
 </script>
 
-<style scoped></style>
+<template>
+  <ProfitPill
+    :profit-ratio="profitRatio"
+    :profit-abs="profitAbs"
+    :profit-desc="profitDesc"
+    :stake-currency="trade.quote_currency || 'USDT'"
+  />
+</template>

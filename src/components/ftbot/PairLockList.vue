@@ -1,28 +1,3 @@
-<template>
-  <div>
-    <div class="mb-2">
-      <label class="me-auto h3">Pair Locks</label>
-      <BButton class="float-end" size="sm" @click="botStore.activeBot.getLocks">
-        <i-mdi-refresh />
-      </BButton>
-    </div>
-    <div>
-      <BTable class="table-sm" :items="botStore.activeBot.activeLocks" :fields="tableFields">
-        <template #cell(actions)="row">
-          <BButton
-            class="btn-xs ms-1"
-            size="sm"
-            title="Delete trade"
-            @click="removePairLock(row.item as unknown as Lock)"
-          >
-            <i-mdi-delete />
-          </BButton>
-        </template>
-      </BTable>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { Lock } from '@/types';
 
@@ -47,4 +22,27 @@ const removePairLock = (item: Lock) => {
 };
 </script>
 
-<style scoped></style>
+<template>
+  <div>
+    <div class="mb-2">
+      <label class="me-auto h3">Pair Locks</label>
+      <BButton class="float-end" size="sm" @click="botStore.activeBot.getLocks">
+        <i-mdi-refresh />
+      </BButton>
+    </div>
+    <div>
+      <BTable class="table-sm" :items="botStore.activeBot.activeLocks" :fields="tableFields">
+        <template #cell(actions)="row">
+          <BButton
+            class="btn-xs ms-1"
+            size="sm"
+            title="Delete trade"
+            @click="removePairLock(row.item as unknown as Lock)"
+          >
+            <i-mdi-delete />
+          </BButton>
+        </template>
+      </BTable>
+    </div>
+  </div>
+</template>

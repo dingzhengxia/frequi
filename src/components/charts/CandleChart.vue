@@ -1,9 +1,3 @@
-<template>
-  <div class="chart-wrapper">
-    <ECharts v-if="hasData" ref="candleChart" :theme="theme" autoresize manual-update />
-  </div>
-</template>
-
 <script setup lang="ts">
 import {
   ChartSliderPosition,
@@ -182,7 +176,7 @@ function updateChart(initial = false) {
     }
   }
   let dataset = props.heikinAshi
-    ? heikinashi(columns, props.dataset.data)
+    ? heikinAshiDataset(columns, props.dataset.data)
     : props.dataset.data.slice();
 
   diffCols.value.forEach(([colFrom, colTo]) => {
@@ -725,11 +719,13 @@ watch(
 );
 </script>
 
-<style scoped>
-.chart-wrapper {
-  width: 100%;
-  height: 100%;
-}
+<template>
+  <div class="h-100 w-100">
+    <ECharts v-if="hasData" ref="candleChart" :theme="theme" autoresize manual-update />
+  </div>
+</template>
+
+<style scoped lang="scss">
 .echarts {
   width: 100%;
   min-height: 200px;

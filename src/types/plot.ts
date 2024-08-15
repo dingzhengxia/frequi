@@ -4,9 +4,11 @@ export enum ChartType {
   scatter = 'scatter',
 }
 
+export type ChartTypeString = keyof typeof ChartType;
+
 export interface IndicatorConfig {
   color?: string;
-  type?: ChartType;
+  type?: ChartType | ChartTypeString;
   fill_to?: string;
 }
 
@@ -17,6 +19,10 @@ export interface PlotConfig {
 
 export interface PlotConfigStorage {
   [key: string]: PlotConfig;
+}
+
+export interface PlotConfigTemplate {
+  [key: string]: Partial<PlotConfig>;
 }
 
 export const EMPTY_PLOTCONFIG: PlotConfig = { main_plot: {}, subplots: {} };
